@@ -35,8 +35,10 @@ const Box = styled('div')(
       },
 
       section: {
-        pt: [5],
-        pb: [5],
+        pt: [6],
+        pb: [6],
+        ml: 'auto',
+        mr: 'auto',
       },
     },
   })

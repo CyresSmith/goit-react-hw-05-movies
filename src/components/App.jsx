@@ -1,29 +1,22 @@
-import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { TiArrowUpThick } from 'react-icons/ti';
-import Modal from './Modal';
-import ScrollUpBtn from './shared/ScrollUpButton/ScrollUpBtn';
-import useToggleModal from './shared/hooks/useToggleModal';
-
-import Header from './Header';
+import Header from '../components/Header';
+import Home from 'pages/Home';
+import ScrollUpBtn from '../components/shared/ScrollUpButton';
 
 const App = () => {
-  const { showModal, toggleModal } = useToggleModal();
-
   return (
     <>
-      <Header></Header>
-      <ScrollUpBtn
-        icon={TiArrowUpThick}
-        iconSize={30}
-        round={true}
-      ></ScrollUpBtn>
-      {showModal && (
-        <Modal
-          onClick={toggleModal}
-          showModal={showModal}
-          children={''}
-        ></Modal>
-      )}
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/about" element={<Movies />} />
+        <Route path="*" element={<NotFound />} /> */}
+      </Routes>
+      <ScrollUpBtn icon={TiArrowUpThick} iconSize={30} round={true} />
+      {/* {showModal && (
+        <Modal onClick={toggleModal} showModal={showModal} children={''} />
+      )} */}
     </>
   );
 };

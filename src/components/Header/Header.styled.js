@@ -22,6 +22,20 @@ export const Nav = styled.nav`
 export const Link = styled(NavLink)`
   font-size: ${theme.fontSizes.m};
   font-weight: ${theme.fontWeights.regular};
+  color: ${theme.colors.muted};
+  transition: ${theme.transition.primary};
+
+  &.active {
+    color: ${theme.colors.secondary};
+    background-color: ${theme.colors.accent};
+    padding: ${theme.space[1]} ${theme.space[3]};
+    border-radius: ${theme.radii.normal};
+    box-shadow: ${theme.shadow.medium};
+
+    :hover {
+      color: ${theme.colors.secondary};
+    }
+  }
 
   :hover {
     color: ${theme.colors.accent};

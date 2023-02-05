@@ -55,6 +55,10 @@ const theme = {
     container: '1216px',
   },
 
+  transition: {
+    primary: 'all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+  },
+
   shadow: {
     // ${shadowColor}
     low: `0.2px 0.8px 0.7px hsl(${shadowColor} / 0.47),

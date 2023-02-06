@@ -15,7 +15,6 @@ const ScrollUpButton = styled.button`
   border: ${theme.borders.none};
   border-radius: ${p => (p.round ? theme.radii.round : theme.radii.normal)};
   box-shadow: ${theme.shadow.low};
-  transform: ${p => (p.hidden ? 'translateY(+300%)' : 'translateY(0)')};
   transition-property: all;
   transition-duration: 250ms;
   transition-timing-function: ease-in-out;

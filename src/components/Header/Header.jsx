@@ -1,4 +1,4 @@
-import { Nav, Link, CurrentLink } from './Header.styled';
+import { Nav, Link } from './Header.styled';
 import Logo from './Logo';
 import Box from 'components/shared/Box';
 import theme from 'theme';
@@ -10,9 +10,7 @@ const Header = () => {
         <Nav>
           <ul>
             <li>
-              <Link to="/">
-                <Logo />
-              </Link>
+              <Logo />
             </li>
             <li>
               <Link to="/">Home</Link>

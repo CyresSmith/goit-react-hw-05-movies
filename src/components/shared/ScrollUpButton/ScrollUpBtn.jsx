@@ -27,7 +27,9 @@ const ScrollUpBtn = ({ icon: Icon = null, iconSize, round }) => {
       aria-labelledby="scroll up button"
       round={round}
       onClick={handleScrollUpBtn}
-      hidden={scroll < 300 ? true : false}
+      style={{
+        transform: scroll < 300 ? 'translateY(+300%)' : 'translateY(0)',
+      }}
     >
       {Icon && <Icon size={iconSize} />}
     </ScrollUpButton>

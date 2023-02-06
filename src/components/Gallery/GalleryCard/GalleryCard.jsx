@@ -1,6 +1,7 @@
+import { NavLink } from 'react-router-dom';
 import { Card, Description, Image, Info, Title } from './GalleryCard.styled';
 
-const GalleryCard = ({ movieObj, genres }) => {
+const GalleryCard = ({ movieObj, genres, fetchMovieDetails }) => {
   const {
     poster_path,
     title = '',
@@ -56,13 +57,20 @@ const GalleryCard = ({ movieObj, genres }) => {
 
   return (
     <Card>
-      <Image src={posterPath(poster_path)} alt="movie poster" />
-      <Info>
-        <Title>{titleSlice(title)}</Title>
-        <Description>
-          {cardGenres(genre_ids, genresArr)} | {release_date.slice(0, 4)}
-        </Description>
-      </Info>
+      <NavLink
+        to={`/movies/${id}`}
+        onClick={() => {
+          fetchMovieDetails(id);
+        }}
+      >
+        <Image src={posterPath(poster_path)} alt="movie poster" />
+        <Info>
+          <Title>{titleSlice(title)}</Title>
+          <Description>
+            {cardGenres(genre_ids, genresArr)} | {release_date.slice(0, 4)}
+          </Description>
+        </Info>
+      </NavLink>
     </Card>
   );
 };

@@ -1,12 +1,14 @@
-import { LogoBox, LogoText } from './Logo.styled';
+import { LogoLink, LogoBox, LogoText } from './Logo.styled';
 import { GiFilmProjector } from 'react-icons/gi';
 
 const Logo = () => {
   return (
-    <LogoBox>
-      <GiFilmProjector />
-      <LogoText>Cinemateque</LogoText>
-    </LogoBox>
+    <LogoLink to="/">
+      <LogoBox>
+        <GiFilmProjector />
+        <LogoText>Cinemateque</LogoText>
+      </LogoBox>
+    </LogoLink>
   );
 };
 

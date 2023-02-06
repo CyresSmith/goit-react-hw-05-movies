@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
-
-import useToggleModal from '../components/shared/hooks/useToggleModal';
-
-import Modal from '../components/Modal';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import Section from 'components/shared/Section';
 import Gallery from 'components/Gallery';
 import MovieApiService from 'components/shared/Services/MovieApiService';
-import { Report } from 'notiflix/build/notiflix-report-aio';
 
-const Home = () => {
+const Home = ({ fetchMovieDetails }) => {
   const [trending, setTrending] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { showModal, toggleModal } = useToggleModal();
 
   useEffect(() => {
     setLoading(true);

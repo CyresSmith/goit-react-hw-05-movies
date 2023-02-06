@@ -4,7 +4,12 @@ import { PropTypes } from 'prop-types';
 
 const Section = ({ title, titleVariant, titleAs, children }) => {
   return (
-    <Box variant="section" as="section" backgroundColor="primary">
+    <Box
+      variant="section"
+      as="section"
+      backgroundColor="primary"
+      minHeight={850}
+    >
       <Box variant="container">
         {title && (
           <Title variant={titleVariant} as={titleAs}>

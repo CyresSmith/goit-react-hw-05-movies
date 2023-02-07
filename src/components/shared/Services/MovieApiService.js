@@ -72,6 +72,38 @@ class MovieApiService {
         );
         break;
 
+      // get getDetails ==========================================================================
+
+      case 'movie':
+        searchParams = new URLSearchParams({
+          api_key: key,
+        });
+
+        response = await axios.get(
+          `${URL}${this.mediaType}/${id}?${searchParams}`
+        );
+        break;
+
+      case 'credits':
+        searchParams = new URLSearchParams({
+          api_key: key,
+        });
+
+        response = await axios.get(
+          `${URL}${this.mediaType}/${id}/${this.reqType}?${searchParams}`
+        );
+        break;
+
+      case 'reviews':
+        searchParams = new URLSearchParams({
+          api_key: key,
+        });
+
+        response = await axios.get(
+          `${URL}${this.mediaType}/${id}/${this.reqType}?${searchParams}`
+        );
+        break;
+
       default:
         break;
     }

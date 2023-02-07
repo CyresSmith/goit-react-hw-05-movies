@@ -14,7 +14,8 @@ body {
   font-family: Rubik, sans-serif;
   font-size: 14px;
   color: #000000;
-  background-color: #e9eaec;
+  background-color: #90adc6;
+  min-height: 100vh;
 }
 
 h1,

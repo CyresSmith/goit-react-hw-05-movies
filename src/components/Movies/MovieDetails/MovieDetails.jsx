@@ -1,9 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import MovieApiService from 'components/shared/Services/MovieApiService';
 import Box from 'components/shared/Box';
 import Section from 'components/shared/Section';
-import theme from 'theme';
 
 import {
   Card,
@@ -15,6 +14,9 @@ import {
   Description,
   About,
   Text,
+  CompanieLogo,
+  GridBox,
+  Link,
 } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
@@ -28,12 +30,13 @@ export const MovieDetails = () => {
     original_title: '',
     genres: [],
     overview: '',
+    production_companies: [],
   });
 
   useEffect(() => {
     const fetchMovieDetails = async id => {
       const fetchMovieDetails = new MovieApiService({
-        reqType: 'getById',
+        reqType: 'movie',
         mediaType: 'movie',
       });
 
@@ -81,6 +84,7 @@ export const MovieDetails = () => {
     original_title,
     genres,
     overview,
+    production_companies,
   } = data;
 
   const posterPath = path => {
@@ -91,40 +95,81 @@ export const MovieDetails = () => {
   };
 
   return (
-    <Section>
-      <Card>
-        <Poster src={posterPath(poster_path)}></Poster>
-        <Info>
-          <Table>
-            <caption>{title}</caption>
-            <tbody>
-              <tr>
-                <td className="parameter padding-bottom-td">Vote / Votes:</td>
-                <td className="value padding-bottom-td">
-                  <Vote>{vote_average}</Vote> /<Votes>{vote_count}</Votes>
-                </td>
-              </tr>
-              <tr>
-                <td className="parameter padding-bottom-td">Popularity:</td>
-                <td className="value padding-bottom-td">{popularity}</td>
-              </tr>
-              <tr>
-                <td className="parameter padding-bottom-td">Original Title:</td>
-                <td className="value padding-bottom-td">{original_title}</td>
-              </tr>
-              <tr>
-                <td className="parameter no-padding-td">Genre:</td>
-                <td className="value no-padding-td">{genresTxt(genres)}</td>
-              </tr>
-            </tbody>
-          </Table>
-          <Description>
-            <About>about</About>
-            <Text>{overview}</Text>
-          </Description>
-        </Info>
-      </Card>
-    </Section>
+    <>
+      <Section>
+        <Card>
+          <Poster src={posterPath(poster_path)} />
+          <Info>
+            <GridBox>
+              <Box>
+                <Table>
+                  <caption>{title}</caption>
+                  <tbody>
+                    <tr>
+                      <td className="parameter padding-bottom-td">
+                        Vote / Votes:
+                      </td>
+                      <td className="value padding-bottom-td">
+                        <Vote>{vote_average}</Vote> /<Votes>{vote_count}</Votes>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="parameter padding-bottom-td">
+                        Popularity:
+                      </td>
+                      <td className="value padding-bottom-td">{popularity}</td>
+                    </tr>
+                    <tr>
+                      <td className="parameter padding-bottom-td">
+                        Original Title:
+                      </td>
+                      <td className="value padding-bottom-td">
+                        {original_title}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="parameter no-padding-td">Genre:</td>
+                      <td className="value no-padding-td">
+                        {genresTxt(genres)}
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
+                <Description>
+                  <About>about</About>
+                  <Text>{overview}</Text>
+                </Description>
+
+                <Box>
+                  <Link to="cast">Cast</Link>
+                  <Link to="reviews">Reviews</Link>
+                </Box>
+              </Box>
+
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+              >
+                {production_companies.slice(0, 4).map(({ logo_path, name }) => {
+                  if (logo_path) {
+                    return (
+                      <CompanieLogo
+                        key={name}
+                        src={posterPath(logo_path)}
+                        alt={name}
+                      />
+                    );
+                  }
+                })}
+              </Box>
+            </GridBox>
+          </Info>
+        </Card>
+      </Section>
+      <Outlet />
+    </>
   );
 };
 

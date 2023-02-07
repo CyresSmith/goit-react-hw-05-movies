@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import theme from 'theme';
 
 export const Card = styled.div`
@@ -8,15 +9,22 @@ export const Card = styled.div`
 
 export const Poster = styled.img`
   height: 500px;
-  width: auto;
+  width: 340px;
   padding: ${theme.space[3]};
   background-color: ${theme.colors.background};
   border-radius: ${theme.radii.normal};
   box-shadow: ${theme.shadow.medium};
 `;
 
+export const GridBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: ${theme.space[5]};
+  height: 100%;
+`;
+
 export const Info = styled.div`
-  width: 500px;
+  width: 100%;
   padding: ${theme.space[3]} ${theme.space[4]};
   background-color: ${theme.colors.background};
   border-radius: ${theme.radii.normal};
@@ -43,7 +51,7 @@ export const Table = styled.table`
   }
 
   .parameter {
-    width: 150px;
+    width: 50%;
     font-weight: ${theme.fontWeights.bold};
   }
 
@@ -57,6 +65,16 @@ export const Table = styled.table`
 
   .no-padding-td {
     padding-bottom: 0px;
+  }
+`;
+
+export const CompanieLogo = styled.img`
+  max-height: calc(100% - (${theme.space[4]} * 3) / 4);
+  max-width: 50%;
+  object-fit: contain;
+
+  :not(:last-child) {
+    margin-bottom: ${theme.space[4]};
   }
 `;
 
@@ -82,6 +100,8 @@ export const Votes = styled.span`
 
 export const Description = styled.p`
   text-align: left;
+  width: 100%;
+  margin-bottom: ${theme.space[4]};
 `;
 
 export const About = styled.span`
@@ -96,4 +116,35 @@ export const Text = styled.span`
   font-size: ${theme.fontSizes.s};
   line-height: ${theme.lineHeights.body};
   font-weight: ${theme.fontWeights.regular};
+`;
+
+export const Link = styled(NavLink)`
+  font-size: ${theme.fontSizes.l};
+  font-weight: ${theme.fontWeights.regular};
+  color: ${theme.colors.background};
+  padding: ${theme.space[2]} ${theme.space[4]};
+  border-radius: ${theme.radii.normal};
+  background-color: ${theme.colors.secondary};
+  transition: ${theme.transition.primary};
+  box-shadow: ${theme.shadow.low};
+
+  :not(:last-child) {
+    margin-right: ${theme.space[4]};
+  }
+
+  &.active {
+    color: ${theme.colors.secondary};
+    background-color: ${theme.colors.accent};
+    padding: ${theme.space[2]} ${theme.space[4]};
+    border-radius: ${theme.radii.normal};
+    box-shadow: ${theme.shadow.medium};
+
+    :hover {
+      color: ${theme.colors.secondary};
+    }
+  }
+
+  :hover {
+    color: ${theme.colors.accent};
+  }
 `;

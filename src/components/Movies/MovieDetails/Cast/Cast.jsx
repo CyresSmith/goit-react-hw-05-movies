@@ -4,6 +4,7 @@ import List from './Cast.styled';
 import CastItem from './CastItem';
 import MovieApiService from 'components/shared/Services/MovieApiService';
 import Section from 'components/shared/Section';
+import Title from 'components/shared/Title/Title.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -32,17 +33,23 @@ const Cast = () => {
   return (
     <Section bgColor="secondary">
       <List>
-        {data.map(
-          ({ profile_path = '', character = '', name = '', id = '' }) => {
-            return (
-              <CastItem
-                key={id}
-                path={profile_path}
-                character={character}
-                name={name}
-              />
-            );
-          }
+        {data.length > 0 ? (
+          <List>
+            {data.map(
+              ({ profile_path = '', character = '', name = '', id = '' }) => {
+                return (
+                  <CastItem
+                    key={id}
+                    path={profile_path}
+                    character={character}
+                    name={name}
+                  />
+                );
+              }
+            )}
+          </List>
+        ) : (
+          <Title variant="subTitleAccent">No actors found</Title>
         )}
       </List>
     </Section>

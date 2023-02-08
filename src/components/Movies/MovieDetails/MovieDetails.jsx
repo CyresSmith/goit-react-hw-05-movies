@@ -21,6 +21,7 @@ import {
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
+
   const [data, setData] = useState({
     poster_path: '',
     title: '',

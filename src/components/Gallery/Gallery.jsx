@@ -3,7 +3,7 @@ import MovieApiService from 'components/shared/Services/MovieApiService';
 import GalleryUl from './Gallery.styled';
 import GalleryCard from './GalleryCard';
 
-const Gallery = ({ trending, loading }) => {
+const Gallery = ({ movies, loading }) => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Gallery = ({ trending, loading }) => {
 
   return (
     <GalleryUl>
-      {trending.map(movieObj => {
+      {movies.map(movieObj => {
         const { id } = movieObj;
         return <GalleryCard key={id} movieObj={movieObj} genres={genres} />;
       })}

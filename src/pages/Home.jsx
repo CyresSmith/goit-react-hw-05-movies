@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import MovieApiService from 'components/shared/Services/MovieApiService';
 import Section from 'components/shared/Section';
 import Gallery from 'components/Gallery';
-import MovieApiService from 'components/shared/Services/MovieApiService';
 
 const Home = ({ fetchMovieDetails }) => {
   const [trending, setTrending] = useState([]);
@@ -40,7 +40,7 @@ const Home = ({ fetchMovieDetails }) => {
   return (
     <>
       <Section>
-        <Gallery trending={trending} loading={loading} />
+        <Gallery movies={trending} loading={loading} />
       </Section>
     </>
   );

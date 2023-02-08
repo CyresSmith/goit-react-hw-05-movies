@@ -17,6 +17,7 @@ export const Content = styled.p`
   font-size: ${theme.fontSizes.m};
   font-weight: ${theme.fontWeights.light};
   line-height: ${theme.lineHeights.body};
+  text-align: justify;
   margin-bottom: ${theme.space[4]};
 `;
 

@@ -3,7 +3,10 @@ import theme from 'theme';
 
 export const Form = styled.form`
   position: relative;
-  width: 300px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: ${theme.space[6]};
 
   button {
     position: absolute;

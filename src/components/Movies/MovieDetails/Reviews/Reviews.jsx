@@ -4,6 +4,7 @@ import MovieApiService from 'components/shared/Services/MovieApiService';
 import Section from 'components/shared/Section';
 import { List } from './Reviews.styled';
 import Review from './Review';
+import Title from 'components/shared/Title/Title.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -31,18 +32,24 @@ const Reviews = () => {
 
   return (
     <Section bgColor="secondary">
-      <List>
-        {data.map(({ author = '', content = '', id = '', created_at = '' }) => {
-          return (
-            <Review
-              key={id}
-              content={content}
-              author={author}
-              created_at={created_at}
-            />
-          );
-        })}
-      </List>
+      {data.length > 0 ? (
+        <List>
+          {data.map(
+            ({ author = '', content = '', id = '', created_at = '' }) => {
+              return (
+                <Review
+                  key={id}
+                  content={content}
+                  author={author}
+                  created_at={created_at}
+                />
+              );
+            }
+          )}
+        </List>
+      ) : (
+        <Title variant="subTitleAccent">No reviews found</Title>
+      )}
     </Section>
   );
 };

@@ -46,7 +46,17 @@ const Title = styled('p')(
       subTitle: {
         textAlign: 'center',
         fontSize: theme.fontSizes.xl,
-        fontWeight: theme.fontWeights.light,
+        fontWeight: theme.fontWeights.regular,
+        color: theme.colors.secondary,
+        ml: 'auto',
+        mr: 'auto',
+        mb: [5],
+      },
+
+      subTitleAccent: {
+        textAlign: 'center',
+        fontSize: theme.fontSizes.xl,
+        fontWeight: theme.fontWeights.regular,
         color: theme.colors.accent,
         ml: 'auto',
         mr: 'auto',

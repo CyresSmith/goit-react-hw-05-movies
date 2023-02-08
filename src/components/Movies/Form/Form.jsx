@@ -17,6 +17,9 @@ const SearchForm = ({ onSubmit }) => {
       <Button
         endicon={RiMovie2Line}
         iconSize={22}
+        onClick={e => {
+          handleSubmit(e);
+        }}
         type="button"
         disabled={state.query?.length > 0 ? false : true}
         className="searchButton"

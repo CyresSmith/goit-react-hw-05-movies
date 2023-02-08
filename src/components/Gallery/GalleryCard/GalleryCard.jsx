@@ -49,7 +49,7 @@ const GalleryCard = ({ movieObj, genres, fetchMovieDetails }) => {
     }
   };
 
-  const { genres: genresArr } = genres;
+  const { genres: genresArr = [] } = genres;
 
   const posterPath = posterPath => {
     return `https://image.tmdb.org/t/p/w500${posterPath}`;

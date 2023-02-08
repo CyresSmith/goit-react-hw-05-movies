@@ -25,7 +25,7 @@ const Section = ({
 
 Section.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   titleVariant: PropTypes.string,
   titleAs: PropTypes.string,
 };

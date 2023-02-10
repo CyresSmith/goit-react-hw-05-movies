@@ -7,7 +7,7 @@ const useForm = onSubmit => {
     const { name, value } = target;
 
     setState(prevState => {
-      return { ...prevState, [name]: value };
+      return { ...prevState, [name]: value.trim() };
     });
   };
 

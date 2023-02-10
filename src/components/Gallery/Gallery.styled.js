@@ -5,5 +5,6 @@ const GalleryUl = styled.ul`
   gap: ${theme.space[5]};
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: ${theme.space[5]};
 `;
 export default GalleryUl;

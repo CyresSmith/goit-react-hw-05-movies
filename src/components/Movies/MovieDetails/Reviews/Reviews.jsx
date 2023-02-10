@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Report } from 'notiflix';
 import MovieApiService from 'components/shared/Services/MovieApiService';
 import Section from 'components/shared/Section';
 import { List } from './Reviews.styled';
@@ -21,13 +22,13 @@ const Reviews = () => {
         const data = await fetchMovieDetails.getReqData(id);
         return data.results;
       } catch (error) {
-        console.error(error.message);
+        Report.failure(error.message);
       }
     };
 
     fetchMovieDetails(movieId)
       .then(data => setData(data))
-      .catch(error => console.error(error.message));
+      .catch(error => Report.failure(error.message));
   }, [movieId]);
 
   return (

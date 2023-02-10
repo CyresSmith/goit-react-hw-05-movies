@@ -58,7 +58,7 @@ const GalleryCard = ({ movieObj, genres, fetchMovieDetails }) => {
   return (
     <Card>
       <NavLink
-        to={`/movies/${id}`}
+        to={`/goit-react-hw-05-movies/movies/${id}`}
         onClick={() => {
           fetchMovieDetails(id);
         }}

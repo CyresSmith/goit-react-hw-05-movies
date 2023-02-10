@@ -3,7 +3,7 @@ import { GiFilmProjector } from 'react-icons/gi';
 
 const Logo = () => {
   return (
-    <LogoLink to="/">
+    <LogoLink to="/goit-react-hw-05-movies">
       <LogoBox>
         <GiFilmProjector />
         <LogoText>Cinemateque</LogoText>

@@ -56,7 +56,7 @@ class MovieApiService {
         });
 
         response = await axios.get(
-          `${URL}${this.reqType}/${this.mediaType}/?${searchParams}`
+          `${URL}${this.reqType}/${this.mediaType}?${searchParams}`
         );
         break;
 

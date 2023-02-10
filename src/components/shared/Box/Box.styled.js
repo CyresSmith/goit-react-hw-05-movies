@@ -11,6 +11,7 @@ import {
   position,
   shadow,
   variant,
+  flex,
 } from 'styled-system';
 
 const Box = styled('div')(
@@ -32,6 +33,17 @@ const Box = styled('div')(
         mr: 'auto',
         pl: [5],
         pr: [5],
+      },
+
+      containerCentered: {
+        width: 'container',
+        ml: 'auto',
+        mr: 'auto',
+        pl: [5],
+        pr: [5],
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       },
 
       section: {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Report } from 'notiflix';
 import List from './Cast.styled';
 import CastItem from './CastItem';
 import MovieApiService from 'components/shared/Services/MovieApiService';
@@ -21,13 +22,13 @@ const Cast = () => {
         const data = await fetchMovieDetails.getReqData(id);
         return data.cast;
       } catch (error) {
-        console.error(error.message);
+        Report.failure(error.message);
       }
     };
 
     fetchMovieDetails(movieId)
       .then(data => setData(data))
-      .catch(error => console.error(error.message));
+      .catch(error => Report.failure(error.message));
   }, [movieId]);
 
   return (

@@ -38,9 +38,10 @@ const Title = styled('p')(
         textAlign: 'center',
         fontSize: theme.fontSizes.xl,
         fontWeight: theme.fontWeights.bold,
-        color: theme.colors.accent,
+        color: theme.colors.secondary,
         ml: 'auto',
         mr: 'auto',
+        mb: theme.space[5],
       },
 
       subTitle: {

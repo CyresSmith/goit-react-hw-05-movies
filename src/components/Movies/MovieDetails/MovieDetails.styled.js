@@ -25,7 +25,7 @@ export const GridBox = styled.div`
 
 export const Info = styled.div`
   width: 100%;
-  padding: ${theme.space[3]} ${theme.space[4]};
+  padding: ${theme.space[4]} ${theme.space[4]};
   background-color: ${theme.colors.background};
   border-radius: ${theme.radii.normal};
   color: ${theme.colors.secondary};
@@ -101,7 +101,6 @@ export const Votes = styled.span`
 export const Description = styled.p`
   text-align: left;
   width: 100%;
-  margin-bottom: ${theme.space[4]};
 `;
 
 export const About = styled.span`

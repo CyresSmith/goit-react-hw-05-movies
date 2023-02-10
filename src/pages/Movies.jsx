@@ -5,15 +5,19 @@ import Section from 'components/shared/Section';
 import Gallery from 'components/Gallery';
 import SearchForm from 'components/Movies/Form/Form';
 import Title from 'components/shared/Title/Title.styled';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import Button from 'components/shared/Button';
+import { CgMoreO } from 'react-icons/cg';
 
 const Movies = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
   const [searchedMovies, setSearchedMovies] = useState([]);
+  const [loadMoreBtnVisible, setLoadMoreBtnVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const query = searchParams.get('query');
+  const page = searchParams.get('page');
 
   useEffect(() => {
     if (!query) {
@@ -27,33 +31,71 @@ const Movies = () => {
       mediaType: 'movie',
     });
 
-    const fetchData = async () => {
+    const fetchData = async page => {
       try {
-        const { results, total_results } =
-          await fetchSearchedMovies.getReqData();
+        const { results, total_results, total_pages } =
+          await fetchSearchedMovies.getReqData(null, page);
+
+        const data = await fetchSearchedMovies.getReqData(null, page);
+
+        console.log(data);
 
         if (total_results.length === 0) {
           Report.failure('No movies found!');
         }
         return results;
-      } catch (error) {
-        setError(error.message);
+      } catch (result) {
+        setError(result.status_message);
       }
     };
 
     fetchSearchedMovies.request = query;
 
-    fetchData()
-      .then(result => setSearchedMovies(result))
-      .catch(error => setError(error.message))
+    fetchData(page)
+      .then(result => {
+        if (result.length < 20) {
+          setLoadMoreBtnVisible(false);
+        }
+
+        if (result.length === 0) {
+          setSearchedMovies([]);
+          return Report.failure('No movies found!');
+        }
+
+        setLoadMoreBtnVisible(true);
+        setSearchedMovies(prevState => [...prevState, ...result]);
+      })
+      .catch(result => setError(result.status_message))
       .finally(() => setLoading(false));
-  }, [query]);
+  }, [page, query]);
+
+  const setParams = params => {
+    setSearchedMovies([]);
+    return setSearchParams({ ...params, page: 1 });
+  };
+
+  const loadMore = () => {
+    setSearchParams({ query, page: Number(page) + 1 });
+  };
 
   return (
-    <Section>
-      <SearchForm onSubmit={setSearchParams} />
-      {!query && <Title variant="subTitle">Start search movies</Title>}
-      {query && <Gallery movies={searchedMovies} loading={loading} />}
+    <Section variant="containerCentered">
+      <SearchForm onSubmit={setParams} />
+      {!query ? (
+        <>
+          <Title variant="subTitle">Start search movies</Title>
+        </>
+      ) : (
+        <>
+          <Gallery movies={searchedMovies} loading={loading} />
+          {loadMoreBtnVisible && (
+            <Button endicon={CgMoreO} iconSize={18} onClick={() => loadMore()}>
+              Load more
+            </Button>
+          )}
+        </>
+      )}
+      {error && Report.failure(error)}
     </Section>
   );
 };

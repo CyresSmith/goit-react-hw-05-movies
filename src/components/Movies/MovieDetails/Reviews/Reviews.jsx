@@ -32,7 +32,7 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <Section bgColor="secondary">
+    <Section variant="containerCentered" bgColor="secondary">
       {data.length > 0 ? (
         <List>
           {data.map(

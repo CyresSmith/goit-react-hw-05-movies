@@ -104,7 +104,7 @@ export const MovieDetails = () => {
 
   return (
     <>
-      <Section>
+      <Section variant="containerCentered">
         {error && Report.failure(error)}
         {loading && <InfinitySpin width="200" color={theme.colors.accent} />}
         {!error && (

@@ -32,7 +32,7 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <Section bgColor="secondary">
+    <Section variant="containerCentered" bgColor="secondary">
       <List>
         {data.length > 0 ? (
           <List>

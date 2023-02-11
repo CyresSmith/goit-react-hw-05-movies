@@ -9,9 +9,15 @@ const Section = ({
   children,
   bgColor = 'primary',
   variant,
+  minHeight,
 }) => {
   return (
-    <Box variant="section" as="section" backgroundColor={bgColor}>
+    <Box
+      variant="section"
+      as="section"
+      backgroundColor={bgColor}
+      minHeight={minHeight}
+    >
       <Box variant={variant}>
         {title && (
           <Title variant={titleVariant} as={titleAs}>

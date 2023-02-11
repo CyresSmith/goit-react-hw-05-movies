@@ -6,7 +6,7 @@ const Review = ({ content, author, created_at }) => {
   return (
     <Item>
       <Content>{content}</Content>
-      <Box display="flex" alignItems="center">
+      <Box display="flex" alignItems="center" justifyContent="flex-end">
         <Author>{author}</Author>
         <Created>{created_at}</Created>
       </Box>

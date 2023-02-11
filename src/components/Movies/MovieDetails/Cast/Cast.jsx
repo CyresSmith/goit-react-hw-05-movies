@@ -33,7 +33,11 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <Section variant="containerCentered" bgColor={theme.colors.secondary}>
+    <Section
+      variant="containerCentered"
+      bgColor={theme.colors.secondary}
+      minHeight="220px"
+    >
       {data.length > 0 ? (
         <List>
           {data.map(

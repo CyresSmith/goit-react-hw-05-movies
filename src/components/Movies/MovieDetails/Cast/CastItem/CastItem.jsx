@@ -12,7 +12,8 @@ const CastItem = ({ path, character, name }) => {
     <Item>
       <Photo src={posterPath(path)} />
       <Info>
-        <Name>{name}</Name> as <Character>{character}</Character>
+        <Name>{name}</Name>{' '}
+        {character && <Character> as {character}</Character>}
       </Info>
     </Item>
   );

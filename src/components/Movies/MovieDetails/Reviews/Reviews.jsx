@@ -21,6 +21,7 @@ const Reviews = () => {
 
       try {
         const data = await fetchMovieDetails.getReqData(id);
+
         return data.results;
       } catch (error) {
         Report.failure(error.message);
@@ -33,17 +34,22 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <Section variant="containerCentered" bgColor={theme.colors.secondary}>
+    <Section
+      variant="containerCentered"
+      bgColor={theme.colors.secondary}
+      minHeight="220px"
+    >
       {data.length > 0 ? (
         <List>
           {data.map(
             ({ author = '', content = '', id = '', created_at = '' }) => {
+              const date = new Date(created_at);
               return (
                 <Review
                   key={id}
                   content={content}
                   author={author}
-                  created_at={created_at}
+                  created_at={date.toLocaleString()}
                 />
               );
             }

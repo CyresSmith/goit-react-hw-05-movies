@@ -31,7 +31,12 @@ const Gallery = ({ totalPages, page, movies, onClick, loading, setError }) => {
         })}
       </GalleryUl>
       {totalPages > 1 && (
-        <Pagination count={totalPages} page={page} onChange={onClick} />
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={onClick}
+          size="large"
+        />
       )}
       {loading && <InfinitySpin width="200" color={theme.colors.accent} />}
     </>

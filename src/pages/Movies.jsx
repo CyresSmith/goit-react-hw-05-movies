@@ -6,18 +6,15 @@ import Gallery from 'components/Gallery';
 import SearchForm from 'components/Movies/Form/Form';
 import Title from 'components/shared/Title/Title.styled';
 import { useSearchParams } from 'react-router-dom';
-import Button from 'components/shared/Button';
-import { CgMoreO } from 'react-icons/cg';
-
 const Movies = () => {
-  const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
+  const [searchParams, setSearchParams] = useSearchParams({ page: 0 });
+  const [page, setPage] = useState(1);
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [loadMoreBtnVisible, setLoadMoreBtnVisible] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const query = searchParams.get('query');
-  const page = searchParams.get('page');
 
   useEffect(() => {
     if (!query) {
@@ -36,9 +33,7 @@ const Movies = () => {
         const { results, total_results, total_pages } =
           await fetchSearchedMovies.getReqData(null, page);
 
-        const data = await fetchSearchedMovies.getReqData(null, page);
-
-        console.log(data);
+        setTotalPages(total_pages);
 
         if (total_results.length === 0) {
           Report.failure('No movies found!');
@@ -53,17 +48,11 @@ const Movies = () => {
 
     fetchData(page)
       .then(result => {
-        if (result.length < 20) {
-          setLoadMoreBtnVisible(false);
-        }
-
         if (result.length === 0) {
           setSearchedMovies([]);
           return Report.failure('No movies found!');
         }
-
-        setLoadMoreBtnVisible(true);
-        setSearchedMovies(prevState => [...prevState, ...result]);
+        setSearchedMovies(result);
       })
       .catch(result => setError(result.status_message))
       .finally(() => setLoading(false));
@@ -71,11 +60,12 @@ const Movies = () => {
 
   const setParams = params => {
     setSearchedMovies([]);
-    return setSearchParams({ ...params, page: 1 });
+    return setSearchParams({ ...params });
   };
 
-  const loadMore = () => {
-    setSearchParams({ query, page: Number(page) + 1 });
+  const loadMore = (e, num) => {
+    setPage(num);
+    setSearchParams({ query, page: num });
   };
 
   return (
@@ -87,12 +77,13 @@ const Movies = () => {
         </>
       ) : (
         <>
-          <Gallery movies={searchedMovies} loading={loading} />
-          {loadMoreBtnVisible && (
-            <Button endicon={CgMoreO} iconSize={18} onClick={() => loadMore()}>
-              Load more
-            </Button>
-          )}
+          <Gallery
+            totalPages={totalPages}
+            page={page}
+            movies={searchedMovies}
+            loading={loading}
+            onClick={loadMore}
+          />
         </>
       )}
       {error && Report.failure(error)}

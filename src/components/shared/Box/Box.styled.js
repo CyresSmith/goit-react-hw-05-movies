@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import {
   color,
   typography,
@@ -13,6 +13,7 @@ import {
   variant,
   flex,
 } from 'styled-system';
+import theme from 'theme';
 
 const Box = styled('div')(
   color,
@@ -28,27 +29,27 @@ const Box = styled('div')(
   variant({
     variants: {
       container: {
-        width: 'container',
+        width: theme.sizes.container,
         ml: 'auto',
         mr: 'auto',
-        pl: [5],
-        pr: [5],
+        pl: theme.space[5],
+        pr: theme.space[5],
       },
 
       containerCentered: {
-        width: 'container',
+        width: theme.sizes.container,
         ml: 'auto',
         mr: 'auto',
-        pl: [5],
-        pr: [5],
+        pl: theme.space[5],
+        pr: theme.space[5],
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       },
 
       section: {
-        pt: [6],
-        pb: [6],
+        pt: theme.space[5],
+        pb: theme.space[5],
         ml: 'auto',
         mr: 'auto',
       },

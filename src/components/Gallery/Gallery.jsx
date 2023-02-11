@@ -5,8 +5,9 @@ import MovieApiService from 'components/shared/Services/MovieApiService';
 import GalleryUl from './Gallery.styled';
 import GalleryCard from './GalleryCard';
 import theme from 'theme';
+import Pagination from '@mui/material/Pagination';
 
-const Gallery = ({ movies, loading, setError }) => {
+const Gallery = ({ totalPages, page, movies, onClick, loading, setError }) => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
@@ -29,6 +30,9 @@ const Gallery = ({ movies, loading, setError }) => {
           return <GalleryCard key={id} movieObj={movieObj} genres={genres} />;
         })}
       </GalleryUl>
+      {totalPages > 1 && (
+        <Pagination count={totalPages} page={page} onChange={onClick} />
+      )}
       {loading && <InfinitySpin width="200" color={theme.colors.accent} />}
     </>
   );

@@ -160,7 +160,7 @@ export const MovieDetails = () => {
                     </Description>
                   </Box>
 
-                  <Box>
+                  <Box mt={theme.space[4]}>
                     <Link to="cast">Cast</Link>
                     <Link to="reviews">Reviews</Link>
                   </Box>

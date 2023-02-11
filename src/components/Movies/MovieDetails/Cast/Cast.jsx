@@ -6,6 +6,7 @@ import CastItem from './CastItem';
 import MovieApiService from 'components/shared/Services/MovieApiService';
 import Section from 'components/shared/Section';
 import Title from 'components/shared/Title/Title.styled';
+import theme from 'theme';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -32,27 +33,25 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <Section variant="containerCentered" bgColor="secondary">
-      <List>
-        {data.length > 0 ? (
-          <List>
-            {data.map(
-              ({ profile_path = '', character = '', name = '', id = '' }) => {
-                return (
-                  <CastItem
-                    key={id}
-                    path={profile_path}
-                    character={character}
-                    name={name}
-                  />
-                );
-              }
-            )}
-          </List>
-        ) : (
-          <Title variant="subTitleAccent">No actors found</Title>
-        )}
-      </List>
+    <Section variant="containerCentered" bgColor={theme.colors.secondary}>
+      {data.length > 0 ? (
+        <List>
+          {data.map(
+            ({ profile_path = '', character = '', name = '', id = '' }) => {
+              return (
+                <CastItem
+                  key={id}
+                  path={profile_path}
+                  character={character}
+                  name={name}
+                />
+              );
+            }
+          )}
+        </List>
+      ) : (
+        <Title variant="subTitleAccent">No actors found</Title>
+      )}
     </Section>
   );
 };

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import theme from 'theme';
 
@@ -73,7 +73,7 @@ export const CompanieLogo = styled.img`
   max-width: 50%;
   object-fit: contain;
 
-  :not(:last-child) {
+  :not(:last-of-type) {
     margin-bottom: ${theme.space[4]};
   }
 `;
@@ -126,8 +126,9 @@ export const Link = styled(NavLink)`
   background-color: ${theme.colors.secondary};
   transition: ${theme.transition.primary};
   box-shadow: ${theme.shadow.low};
+  margin-top: ${theme.space[4]};
 
-  :not(:last-child) {
+  :not(:last-of-type) {
     margin-right: ${theme.space[4]};
   }
 

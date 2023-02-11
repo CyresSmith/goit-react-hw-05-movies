@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import theme from 'theme';
 
@@ -9,11 +9,11 @@ export const Nav = styled.nav`
   }
 
   li {
-    :not(:last-child) {
+    :not(:last-of-type) {
       margin-right: ${theme.space[4]};
     }
 
-    :first-child {
+    :first-of-type {
       margin-right: ${theme.space[6]};
     }
   }

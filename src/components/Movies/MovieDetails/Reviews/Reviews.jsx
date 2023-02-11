@@ -6,6 +6,7 @@ import Section from 'components/shared/Section';
 import { List } from './Reviews.styled';
 import Review from './Review';
 import Title from 'components/shared/Title/Title.styled';
+import theme from 'theme';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -32,7 +33,7 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <Section variant="containerCentered" bgColor="secondary">
+    <Section variant="containerCentered" bgColor={theme.colors.secondary}>
       {data.length > 0 ? (
         <List>
           {data.map(

@@ -6,6 +6,7 @@ import Gallery from 'components/Gallery';
 import SearchForm from 'components/Movies/Form/Form';
 import Title from 'components/shared/Title/Title.styled';
 import { useSearchParams } from 'react-router-dom';
+
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams({ page: 0 });
   const [page, setPage] = useState(1);
@@ -15,11 +16,21 @@ const Movies = () => {
   const [error, setError] = useState('');
 
   const query = searchParams.get('query');
+  const currentPage = Number(searchParams.get('page'));
 
   useEffect(() => {
     if (!query) {
       return;
     }
+
+    if (currentPage !== 0) {
+      if (currentPage !== page) {
+        setPage(currentPage);
+      }
+    }
+
+    // console.log(currentPage);
+    // console.log(page);
 
     setLoading(true);
 
@@ -46,10 +57,6 @@ const Movies = () => {
 
     fetchSearchedMovies.request = query;
 
-    const data = fetchSearchedMovies.getReqData(null, page);
-
-    console.log(data);
-
     fetchData(page)
       .then(result => {
         if (result.length === 0) {
@@ -60,7 +67,7 @@ const Movies = () => {
       })
       .catch(result => setError(result.status_message))
       .finally(() => setLoading(false));
-  }, [page, query]);
+  }, [currentPage, page, query]);
 
   const setParams = params => {
     setSearchedMovies([]);

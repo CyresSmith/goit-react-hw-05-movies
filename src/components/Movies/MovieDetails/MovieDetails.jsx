@@ -7,8 +7,9 @@ import Box from 'components/shared/Box';
 import Section from 'components/shared/Section';
 import theme from 'theme';
 import Button from 'components/shared/Button';
-import { VscDebugStepBack } from 'react-icons/vsc';
 import { RiArrowGoBackLine } from 'react-icons/ri';
+import { BsPeopleFill } from 'react-icons/bs';
+import { MdRateReview } from 'react-icons/md';
 
 import {
   Card,
@@ -225,10 +226,11 @@ export const MovieDetails = () => {
 
                   <Box mt={theme.space[5]}>
                     <Link to="cast" replace={true}>
+                      <BsPeopleFill />
                       Cast
                     </Link>
                     <Link to="reviews" replace={true}>
-                      Reviews
+                      <MdRateReview /> Reviews
                     </Link>
                   </Box>
                 </Box>

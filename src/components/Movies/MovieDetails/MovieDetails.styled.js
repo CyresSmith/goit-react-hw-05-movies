@@ -122,12 +122,18 @@ export const Link = styled(NavLink)`
   font-size: ${theme.fontSizes.l};
   font-weight: ${theme.fontWeights.regular};
   color: ${theme.colors.background};
-  padding: ${theme.space[2]} ${theme.space[4]};
+  padding: ${theme.space[2]} ${theme.space[3]};
   border-radius: ${theme.radii.normal};
   background-color: ${theme.colors.secondary};
   transition: ${theme.transition.primary};
   box-shadow: ${theme.shadow.low};
   margin-top: ${theme.space[4]};
+  display: inline-flex;
+  align-items: center;
+
+  svg {
+    margin-right: ${theme.space[3]};
+  }
 
   :not(:last-of-type) {
     margin-right: ${theme.space[4]};

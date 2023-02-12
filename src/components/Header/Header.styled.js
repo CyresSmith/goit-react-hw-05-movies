@@ -24,6 +24,12 @@ export const Link = styled(NavLink)`
   font-weight: ${theme.fontWeights.regular};
   color: ${theme.colors.muted};
   transition: ${theme.transition.primary};
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: ${theme.space[2]};
+  }
 
   &.active {
     color: ${theme.colors.secondary};

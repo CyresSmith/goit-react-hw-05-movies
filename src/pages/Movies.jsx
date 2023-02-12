@@ -46,6 +46,10 @@ const Movies = () => {
 
     fetchSearchedMovies.request = query;
 
+    const data = fetchSearchedMovies.getReqData(null, page);
+
+    console.log(data);
+
     fetchData(page)
       .then(result => {
         if (result.length === 0) {
@@ -69,7 +73,7 @@ const Movies = () => {
   };
 
   return (
-    <Section variant="containerCentered">
+    <Section sectionVariant="section" containerVariant="containerCentered">
       <SearchForm onSubmit={setParams} />
       {!query ? (
         <>

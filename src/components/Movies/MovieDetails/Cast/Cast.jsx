@@ -34,7 +34,8 @@ const Cast = () => {
 
   return (
     <Section
-      variant="containerCentered"
+      sectionVariant="section"
+      containerVariant="containerCentered"
       bgColor={theme.colors.secondary}
       minHeight="220px"
     >

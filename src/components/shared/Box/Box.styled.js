@@ -53,6 +53,13 @@ const Box = styled('div')(
         ml: 'auto',
         mr: 'auto',
       },
+
+      sectionHero: {
+        pt: theme.space[7],
+        pb: theme.space[7],
+        ml: 'auto',
+        mr: 'auto',
+      },
     },
   })
 );

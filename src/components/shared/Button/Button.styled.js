@@ -3,6 +3,9 @@ import theme from 'theme';
 
 export const StyledButton = styled('button')`
   display: inline-flex;
+  position: ${({ position }) => position.position};
+  top: ${({ position }) => position.top};
+  right: ${({ position }) => position.right};
   align-items: center;
   font-family: ${theme.fonts.body};
   font-size: ${theme.fontSizes.m};

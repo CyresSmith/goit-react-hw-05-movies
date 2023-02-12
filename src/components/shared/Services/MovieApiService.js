@@ -104,6 +104,20 @@ class MovieApiService {
         );
         break;
 
+      // https://api.themoviedb.org/3/images/800345?api_key=ac91775ba29254b7e75060011bf34a90
+
+      // https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=<<api_key>>&language=en-US
+
+      case 'images':
+        searchParams = new URLSearchParams({
+          api_key: key,
+        });
+
+        response = await axios.get(
+          `${URL}${this.mediaType}/${id}/${this.reqType}?${searchParams}`
+        );
+        break;
+
       default:
         break;
     }

@@ -25,6 +25,7 @@ export const GridBox = styled.div`
 
 export const Info = styled.div`
   width: 100%;
+  position: relative;
   padding: ${theme.space[4]} ${theme.space[4]};
   background-color: ${theme.colors.background};
   border-radius: ${theme.radii.normal};

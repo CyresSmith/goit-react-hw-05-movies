@@ -56,7 +56,8 @@ const Home = () => {
       <Section
         title="Most trending films of the week"
         titleVariant="mainTitle"
-        variant="containerCentered"
+        sectionVariant="section"
+        containerVariant="containerCentered"
       >
         {!error && (
           <Gallery

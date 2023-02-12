@@ -1,4 +1,4 @@
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import { Report } from 'notiflix';
@@ -6,6 +6,9 @@ import MovieApiService from 'components/shared/Services/MovieApiService';
 import Box from 'components/shared/Box';
 import Section from 'components/shared/Section';
 import theme from 'theme';
+import Button from 'components/shared/Button';
+import { VscDebugStepBack } from 'react-icons/vsc';
+import { RiArrowGoBackLine } from 'react-icons/ri';
 
 import {
   Card,
@@ -26,9 +29,12 @@ export const MovieDetails = () => {
   const { movieId } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [backdrop, setBackdrop] = useState({});
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     poster_path: '',
+    backdrop_path: '',
     title: '',
     vote_average: '',
     vote_count: '',
@@ -54,6 +60,35 @@ export const MovieDetails = () => {
         setError(result.status_message);
       }
     };
+
+    const fetchMovieImages = async id => {
+      const fetchMovieBackdrop = new MovieApiService({
+        reqType: 'images',
+        mediaType: 'movie',
+      });
+
+      try {
+        const data = await fetchMovieBackdrop.getReqData(id);
+        return data;
+      } catch (result) {
+        setError(result.status_message);
+      }
+    };
+
+    fetchMovieImages(movieId)
+      .then(data => {
+        if (data.backdrops.length > 1) {
+          return setBackdrop(data.backdrops[0]);
+        }
+
+        if (data.posters.length > 1) {
+          return setBackdrop(data.backdrops[0]);
+        }
+
+        return null;
+      })
+      .catch(result => setError(result.status_message))
+      .finally(setLoading(false));
 
     fetchMovieDetails(movieId)
       .then(data => setData(data))
@@ -102,15 +137,43 @@ export const MovieDetails = () => {
     return '';
   };
 
+  const backgroundPath = () => {
+    if (backdrop.file_path) {
+      const { file_path } = backdrop;
+      return `
+      linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+        url(https://image.tmdb.org/t/p/original${file_path})`;
+    }
+  };
+
+  const goBack = () => navigate(-1);
+
   return (
     <>
-      <Section variant="containerCentered">
+      <Section
+        sectionVariant="sectionHero"
+        containerVariant="containerCentered"
+        backgroundImage={backgroundPath()}
+      >
         {error && Report.failure(error)}
         {loading && <InfinitySpin width="200" color={theme.colors.accent} />}
         {!error && (
           <Card>
             <Poster src={posterPath(poster_path)} />
             <Info>
+              <Button
+                endicon={RiArrowGoBackLine}
+                onClick={goBack}
+                position={{
+                  position: 'absolute',
+                  top: theme.space[4],
+                  right: theme.space[4],
+                }}
+              >
+                Go back
+              </Button>
               <GridBox>
                 <Box
                   display="flex"
@@ -160,9 +223,13 @@ export const MovieDetails = () => {
                     </Description>
                   </Box>
 
-                  <Box mt={theme.space[4]}>
-                    <Link to="cast">Cast</Link>
-                    <Link to="reviews">Reviews</Link>
+                  <Box mt={theme.space[5]}>
+                    <Link to="cast" replace={true}>
+                      Cast
+                    </Link>
+                    <Link to="reviews" replace={true}>
+                      Reviews
+                    </Link>
                   </Box>
                 </Box>
 

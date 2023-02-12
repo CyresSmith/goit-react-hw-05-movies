@@ -1,24 +1,30 @@
 import Box from 'components/shared/Box';
 import Title from 'components/shared/Title/Title.styled';
 import { PropTypes } from 'prop-types';
+import theme from 'theme';
 
 const Section = ({
   title,
   titleVariant,
   titleAs,
   children,
-  bgColor = 'primary',
-  variant,
+  bgColor = theme.colors.primary,
+  sectionVariant,
+  containerVariant,
   minHeight,
+  backgroundImage = null,
 }) => {
   return (
     <Box
-      variant="section"
+      variant={sectionVariant}
       as="section"
       backgroundColor={bgColor}
       minHeight={minHeight}
+      backgroundImage={backgroundImage}
+      backgroundSize="cover"
+      backgroundPosition="center"
     >
-      <Box variant={variant}>
+      <Box variant={containerVariant}>
         {title && (
           <Title variant={titleVariant} as={titleAs}>
             {title}

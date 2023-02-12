@@ -1,3 +1,4 @@
+import { relativeTimeRounding } from 'moment';
 import { PropTypes } from 'prop-types';
 import { StyledButton, ButtonText } from './Button.styled';
 
@@ -11,9 +12,15 @@ const Button = ({
   disabled = false,
   children,
   onClick,
+  position = {
+    position: 'relative',
+    marginTop: '',
+    marginBottom: '',
+  },
 }) => {
   return (
     <StyledButton
+      position={position}
       type={type}
       disabled={disabled}
       mt={mt}

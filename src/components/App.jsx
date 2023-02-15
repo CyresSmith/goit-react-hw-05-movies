@@ -1,28 +1,30 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import SharedLayout from './SharedLayout';
-import Home from 'pages/Home';
-import Movies from 'pages/Movies';
-import MovieDetails from './Movies/MovieDetails';
-import Cast from './Movies/MovieDetails/Cast';
-import Reviews from './Movies/MovieDetails/Reviews/Reviews';
-import NotFound from 'pages/NotFound';
+
+const Spinner = lazy(() => import('./shared/Spinner'));
+const SharedLayout = lazy(() => import('./SharedLayout'));
+const Home = lazy(() => import('pages/Home'));
+const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('./Movies/MovieDetails'));
+const Cast = lazy(() => import('./Movies/MovieDetails/Cast'));
+const Reviews = lazy(() => import('./Movies/MovieDetails/Reviews/Reviews'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/goit-react-hw-05-movies" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="/goit-react-hw-05-movies/movies" element={<Movies />} />
-        <Route
-          path="/goit-react-hw-05-movies/movies/:movieId"
-          element={<MovieDetails />}
-        >
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </Suspense>
   );
 };
 

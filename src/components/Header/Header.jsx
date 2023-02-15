@@ -8,7 +8,7 @@ import { RiMovie2Fill } from 'react-icons/ri';
 
 const Header = () => {
   return (
-    <Box as="header" pt={[4]} pb={[4]} backgroundColor={theme.colors.secondary}>
+    <Box as="header" pt={[3]} pb={[3]} backgroundColor={theme.colors.secondary}>
       <Box variant="container">
         <Nav>
           <ul>
@@ -16,12 +16,12 @@ const Header = () => {
               <Logo />
             </li>
             <li>
-              <Link to="/goit-react-hw-05-movies">
+              <Link to="/">
                 <FaHome /> Home
               </Link>
             </li>
             <li>
-              <Link to="/goit-react-hw-05-movies/movies">
+              <Link to="/movies">
                 <RiMovie2Fill />
                 Movies
               </Link>

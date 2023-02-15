@@ -13,8 +13,16 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const currentPage = Number(searchParams.get('page'));
+
   useEffect(() => {
     setLoading(true);
+
+    if (currentPage !== 0) {
+      if (currentPage !== page) {
+        setPage(currentPage);
+      }
+    }
 
     const fetchTrending = new MovieApiService({
       reqType: 'trending',
@@ -44,11 +52,15 @@ const Home = () => {
       .then(result => setTrending(result))
       .catch(result => setError(result.status_message))
       .finally(() => setLoading(false));
-  }, [page]);
+  }, [currentPage, page]);
 
   const loadMore = (e, num) => {
     setPage(num);
     setSearchParams({ page: num });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (

@@ -26,7 +26,7 @@ import {
   Link,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -239,7 +239,7 @@ export const MovieDetails = () => {
                   display="flex"
                   flexDirection="column"
                   alignItems="center"
-                  justifyContent="center"
+                  justifyContent="space-around"
                 >
                   {production_companies
                     .slice(0, 4)

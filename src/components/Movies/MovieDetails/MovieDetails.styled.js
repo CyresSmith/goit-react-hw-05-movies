@@ -70,13 +70,9 @@ export const Table = styled.table`
 `;
 
 export const CompanieLogo = styled.img`
-  max-height: calc(100% - (${theme.space[4]} * 3) / 4);
+  max-height: 120px;
   max-width: 50%;
   object-fit: contain;
-
-  :not(:last-of-type) {
-    margin-bottom: ${theme.space[4]};
-  }
 `;
 
 export const Vote = styled.span`

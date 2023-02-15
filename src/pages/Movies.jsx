@@ -29,9 +29,6 @@ const Movies = () => {
       }
     }
 
-    // console.log(currentPage);
-    // console.log(page);
-
     setLoading(true);
 
     const fetchSearchedMovies = new MovieApiService({
@@ -77,6 +74,10 @@ const Movies = () => {
   const loadMore = (e, num) => {
     setPage(num);
     setSearchParams({ query, page: num });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { InfinitySpin } from 'react-loader-spinner';
+import Pagination from '@mui/material/Pagination';
 import MovieApiService from 'components/shared/Services/MovieApiService';
 import GalleryUl from './Gallery.styled';
 import GalleryCard from './GalleryCard';
 import theme from 'theme';
-import Pagination from '@mui/material/Pagination';
 
 const Gallery = ({ totalPages, page, movies, onClick, loading, setError }) => {
   const [genres, setGenres] = useState([]);
@@ -20,7 +20,7 @@ const Gallery = ({ totalPages, page, movies, onClick, loading, setError }) => {
       .getReqData()
       .then(result => setGenres(result))
       .catch(result => setError(result.message));
-  }, [setError]);
+  }, [setGenres, setError]);
 
   return (
     <>
@@ -44,7 +44,10 @@ const Gallery = ({ totalPages, page, movies, onClick, loading, setError }) => {
 };
 
 Gallery.propTypes = {
+  totalPages: PropTypes.number,
+  page: PropTypes.number,
   movies: PropTypes.array,
+  onClick: PropTypes.func,
   loading: PropTypes.bool,
   setError: PropTypes.func,
 };

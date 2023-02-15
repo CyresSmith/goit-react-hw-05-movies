@@ -1,5 +1,5 @@
 import Box from 'components/shared/Box';
-import moment from 'moment';
+import { PropTypes } from 'prop-types';
 import { Item, Author, Content, Created } from './Reviews.styled';
 
 const Review = ({ content, author, created_at }) => {
@@ -12,6 +12,12 @@ const Review = ({ content, author, created_at }) => {
       </Box>
     </Item>
   );
+};
+
+Review.propTypes = {
+  content: PropTypes.string,
+  author: PropTypes.string,
+  created_at: PropTypes.string,
 };
 
 export default Review;

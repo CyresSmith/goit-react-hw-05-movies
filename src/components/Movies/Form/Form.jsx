@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import { Form, Input } from './Form.styled';
 import Button from 'components/shared/Button';
 import { RiMovie2Line } from 'react-icons/ri';
@@ -29,6 +30,10 @@ const SearchForm = ({ onSubmit }) => {
       </Button>
     </Form>
   );
+};
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func,
 };
 
 export default SearchForm;

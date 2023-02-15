@@ -1,4 +1,6 @@
+import { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import { Card, Description, Image, Info, Title } from './GalleryCard.styled';
 
 const GalleryCard = ({ movieObj, genres, fetchMovieDetails }) => {
@@ -10,7 +12,7 @@ const GalleryCard = ({ movieObj, genres, fetchMovieDetails }) => {
     release_date = '    ',
   } = movieObj;
 
-  const cardGenres = (genre_ids, genresArr) => {
+  const cardGenres = useCallback((genre_ids, genresArr) => {
     let cardGenresArr = [];
 
     if (genre_ids.length === 0) {
@@ -38,16 +40,16 @@ const GalleryCard = ({ movieObj, genres, fetchMovieDetails }) => {
       default:
         break;
     }
-  };
+  }, []);
 
-  const titleSlice = title => {
+  const titleSlice = useCallback(title => {
     if (title.length > 30) {
       const titleSliced = title.slice(0, 30) + '...';
       return titleSliced;
     } else {
       return title;
     }
-  };
+  }, []);
 
   const { genres: genresArr = [] } = genres;
 
@@ -73,6 +75,12 @@ const GalleryCard = ({ movieObj, genres, fetchMovieDetails }) => {
       </NavLink>
     </Card>
   );
+};
+
+GalleryCard.propTypes = {
+  movieObj: PropTypes.object,
+  genres: PropTypes.object,
+  fetchMovieDetails: PropTypes.func,
 };
 
 export default GalleryCard;

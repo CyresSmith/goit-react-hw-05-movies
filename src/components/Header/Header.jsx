@@ -1,10 +1,11 @@
+import { FaHome } from 'react-icons/fa';
+import { RiMovie2Fill } from 'react-icons/ri';
+import { memo } from 'react';
+
 import { Nav, Link } from './Header.styled';
 import Logo from './Logo';
 import Box from 'components/shared/Box';
 import theme from 'theme';
-
-import { FaHome } from 'react-icons/fa';
-import { RiMovie2Fill } from 'react-icons/ri';
 
 const Header = () => {
   return (
@@ -33,4 +34,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

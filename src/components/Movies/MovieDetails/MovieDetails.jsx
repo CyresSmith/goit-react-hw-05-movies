@@ -1,5 +1,5 @@
 import { useParams, Outlet, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import { Report } from 'notiflix';
 import MovieApiService from 'components/shared/Services/MovieApiService';
@@ -97,7 +97,7 @@ const MovieDetails = () => {
       .finally(setLoading(false));
   }, [movieId]);
 
-  const genresTxt = genres => {
+  const genresTxt = useCallback(genres => {
     if (genres.length > 0) {
       const arr = genres.map(({ name }) => name);
 
@@ -117,7 +117,7 @@ const MovieDetails = () => {
     } else {
       return 'no information';
     }
-  };
+  }, []);
 
   const {
     poster_path,
@@ -131,14 +131,14 @@ const MovieDetails = () => {
     production_companies,
   } = data;
 
-  const posterPath = path => {
+  const posterPath = useCallback(path => {
     if (path) {
       return `https://image.tmdb.org/t/p/w500${path}`;
     }
     return '';
-  };
+  }, []);
 
-  const backgroundPath = () => {
+  const backgroundPath = useCallback(() => {
     if (backdrop.file_path) {
       const { file_path } = backdrop;
       return `
@@ -147,9 +147,9 @@ const MovieDetails = () => {
             rgba(0, 0, 0, 0.7)),
         url(https://image.tmdb.org/t/p/original${file_path})`;
     }
-  };
+  }, [backdrop]);
 
-  const goBack = () => navigate(-1);
+  const goBack = useCallback(() => navigate(-1), [navigate]);
 
   return (
     <>

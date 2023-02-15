@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import MovieApiService from 'components/shared/Services/MovieApiService';
 import Section from 'components/shared/Section';
@@ -66,19 +66,25 @@ const Movies = () => {
       .finally(() => setLoading(false));
   }, [currentPage, page, query]);
 
-  const setParams = params => {
-    setSearchedMovies([]);
-    return setSearchParams({ ...params });
-  };
+  const setParams = useCallback(
+    params => {
+      setSearchedMovies([]);
+      return setSearchParams({ ...params });
+    },
+    [setSearchParams]
+  );
 
-  const loadMore = (e, num) => {
-    setPage(num);
-    setSearchParams({ query, page: num });
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  const loadMore = useCallback(
+    (e, num) => {
+      setPage(num);
+      setSearchParams({ page: num });
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    },
+    [setSearchParams]
+  );
 
   return (
     <Section sectionVariant="section" containerVariant="containerCentered">

@@ -1,4 +1,3 @@
-import { relativeTimeRounding } from 'moment';
 import { PropTypes } from 'prop-types';
 import { StyledButton, ButtonText } from './Button.styled';
 
